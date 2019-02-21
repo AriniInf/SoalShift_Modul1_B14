@@ -1,7 +1,7 @@
 # SoalShift_Modul1_B14
 
 
-Soal Nomor 2
+(Soal Nomor 2) 
 
 Anda merupakan pegawai magang pada sebuah perusahaan retail, dan anda diminta
 untuk memberikan laporan berdasarkan file WA_Sales_Products_2012-14.csv.
@@ -32,7 +32,7 @@ poin b.
   Cari kolom ke-1 “United States” dan kolom ke-7 "2012" dan Product Line "Personal Accessories", Setiap nilai di dalam kolom Quantity dengan isi kolom Product yang sama akan dijumlahkan, Urutkan dari Quantity terbanya, Pilih 3 record teratas, Cetak hasil record tersebut.
   
   
-  <pre><font color="#FCE94F"><b>Camping Equipment&quot;</b></font>
+  <pre><font color="#FCE94F"><b>#Camping Equipment</b></font>
 <font color="#729FCF"><b>awk</b></font> -F, <font color="#FCE94F"><b>&apos;{if($1 == &quot;United States&quot; &amp;&amp; $7 == &quot;2012&quot; &amp;&amp; $4 == &quot;#Camping Equipment&quot;) a[$6]+=$10} END {for(hasil in a) {print a[hasil],hasil}}&apos;</b></font> WA_Sales_Products_2012-14.csv | sort -nr | awk 'NR <= 3 {print $2,$3,$4}'</pre>
   
   Cari kolom ke-1 “United States” dan kolom ke-7 "2012" dan Product Line "Camping Equipment", Setiap nilai di dalam kolom Quantity dengan isi kolom Product yang sama akan dijumlahkan, Urutkan dari Quantity terbanya, Pilih 3 record teratas, Cetak hasil record tersebut.
@@ -42,4 +42,18 @@ poin b.
   
   Cari kolom ke-1 “United States” dan kolom ke-7 "2012" dan Product Line "Outdoor Protection", Setiap nilai di dalam kolom Quantity dengan isi kolom Product yang sama akan dijumlahkan, Urutkan dari Quantity terbanya, Pilih 3 record teratas, Cetak hasil record tersebut.
  
+ ( Soal Nomor 4 )
   
+Lakukan backup file syslog setiap jam dengan format nama file “jam:menit tanggal-
+bulan-tahun”. Isi dari file backup terenkripsi dengan konversi huruf (string
+manipulation) yang disesuaikan dengan jam dilakukannya backup misalkan sebagai
+berikut:
+
+a. Huruf b adalah alfabet kedua, sedangkan saat ini waktu menunjukkan
+pukul 12, sehingga huruf b diganti dengan huruf alfabet yang memiliki
+urutan ke 12+2 = 14.
+b. Hasilnya huruf b menjadi huruf n karena huruf n adalah huruf ke
+empat belas, dan seterusnya.
+c. setelah huruf z akan kembali ke huruf a 
+d. Backup file syslog setiap jam. -> file ada pada file crontab
+e. dan buatkan juga bash script untuk dekripsinya.
