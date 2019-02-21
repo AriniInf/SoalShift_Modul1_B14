@@ -150,3 +150,10 @@ year<font color="#4E9A06">=`</font><font color="#729FCF"><b>echo</b></font> <fon
 
 <font color="#729FCF"><b>cat</b></font> <font color="#FCE94F"><b>&quot;$1&quot;</b></font> <font color="#4E9A06">|</font> tr <font color="#4E9A06">[</font>a<font color="#4E9A06">-z]</font> <font color="#4E9A06">[</font><font color="#FCE94F"><b>&quot;$x&quot;</b></font>-za-<font color="#FCE94F"><b>&quot;$y&quot;</b></font><font color="#4E9A06">]</font> <font color="#4E9A06">|</font> tr <font color="#4E9A06">[</font>A-Z<font color="#4E9A06">]</font> <font color="#4E9A06">[</font><font color="#FCE94F"><b>&quot;$i&quot;</b></font>-ZA-<font color="#FCE94F"><b>&quot;$j&quot;</b></font><font color="#4E9A06">]</font> <font color="#4E9A06">&gt;</font> <font color="#FCE94F"><b>&quot;$hour:$min $day-$month-$year&quot;</b></font>-decrip.txt</pre></pre>
 
+
+   1. Mengambil waktu file yang dijalankan
+   2. Merubah String ke integer lalu menambahkannya dengan waktu,
+   3. Mengatur batas atas dari huruf kecil a-z
+   4. Mengatur batas atas dari huruf besar A-Z jika string lebih dari batas atas maka akan dikembalikan ke a(jika kecil)/A(jika besar)
+   5. Lalu mengambil waktu untuk menyimpan hasil dari program ini
+
