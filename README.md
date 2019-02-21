@@ -100,3 +100,53 @@ jika string kurang dari batas bawah maka akan dikembalikan ke a(jika kecil)/A(ji
 
 d. Backup file syslog setiap jam. -> file ada pada file crontab
 e. dan buatkan juga bash script untuk dekripsinya.
+
+<pre><font color="#06989A">#!/bin/bash</font>
+
+tambah<font color="#4E9A06">=`</font><font color="#729FCF"><b>echo</b></font> <font color="#EF2929"><b>$1</b></font> <font color="#4E9A06">|</font> <font color="#729FCF"><b>awk</b></font> -F<font color="#4E9A06">:</font> <font color="#FCE94F"><b>&apos;{print $1}&apos;</b></font><font color="#4E9A06">`</font>
+tambah<font color="#4E9A06">=`</font><font color="#729FCF"><b>echo</b></font> <font color="#FCE94F"><b>&quot;$tambah&quot;</b></font> <font color="#4E9A06">|</font> bc<font color="#4E9A06">`</font>
+tambah<font color="#4E9A06">=$((</font><font color="#EF2929"><b>$tambah</b></font>-1<font color="#4E9A06">))</font>
+
+x<font color="#4E9A06">=$((</font>122-<font color="#EF2929"><b>$tambah</b></font><font color="#4E9A06">))</font>
+<font color="#4E9A06">if</font> <font color="#4E9A06">[</font> <font color="#EF2929"><b>$x</b></font> <font color="#4E9A06">-gt</font> 122 <font color="#4E9A06">]</font>
+<font color="#4E9A06">then</font>
+    x<font color="#4E9A06">=</font>97
+<font color="#4E9A06">fi</font>
+x<font color="#4E9A06">=$(</font><font color="#729FCF"><b>printf</b></font> <font color="#4E9A06">\\$(</font><font color="#729FCF"><b>printf</b></font> <font color="#FCE94F"><b>&apos;%03o&apos;</b></font> <font color="#EF2929"><b>$x</b></font><font color="#4E9A06">))</font>
+y<font color="#4E9A06">=$(</font><font color="#729FCF"><b>printf</b></font> <font color="#FCE94F"><b>&apos;%d&apos;</b></font> <font color="#FCE94F"><b>&quot;&apos;$x&quot;</b></font><font color="#4E9A06">)</font>
+y<font color="#4E9A06">=$((</font><font color="#EF2929"><b>$y</b></font>-1<font color="#4E9A06">))</font>
+<font color="#4E9A06">if</font> <font color="#4E9A06">[</font> <font color="#EF2929"><b>$y</b></font> <font color="#4E9A06">-lt</font> 97 <font color="#4E9A06">]</font>
+<font color="#4E9A06">then</font>
+    y<font color="#4E9A06">=</font>122
+<font color="#4E9A06">fi</font>
+y<font color="#4E9A06">=$(</font><font color="#729FCF"><b>printf</b></font> <font color="#4E9A06">\\$(</font><font color="#729FCF"><b>printf</b></font> <font color="#FCE94F"><b>&apos;%03o&apos;</b></font> <font color="#EF2929"><b>$y</b></font><font color="#4E9A06">))</font>
+
+i<font color="#4E9A06">=$((</font>90-<font color="#EF2929"><b>$tambah</b></font><font color="#4E9A06">))</font>
+<font color="#4E9A06">if</font> <font color="#4E9A06">[</font> <font color="#EF2929"><b>$i</b></font> <font color="#4E9A06">-gt</font> 90 <font color="#4E9A06">]</font>
+<font color="#4E9A06">then</font>
+    i<font color="#4E9A06">=</font>65
+<font color="#4E9A06">fi</font>
+i<font color="#4E9A06">=$(</font><font color="#729FCF"><b>printf</b></font> <font color="#4E9A06">\\$(</font><font color="#729FCF"><b>printf</b></font> <font color="#FCE94F"><b>&apos;%03o&apos;</b></font> <font color="#EF2929"><b>$i</b></font><font color="#4E9A06">))</font>
+j<font color="#4E9A06">=$(</font><font color="#729FCF"><b>printf</b></font> <font color="#FCE94F"><b>&apos;%d&apos;</b></font> <font color="#FCE94F"><b>&quot;&apos;$i&quot;</b></font><font color="#4E9A06">)</font>
+j<font color="#4E9A06">=$((</font><font color="#EF2929"><b>$j</b></font>-1<font color="#4E9A06">))</font>
+<font color="#4E9A06">if</font> <font color="#4E9A06">[</font> <font color="#EF2929"><b>$j</b></font> <font color="#4E9A06">-lt</font> 65 <font color="#4E9A06">]</font>
+<font color="#4E9A06">then</font>
+    j<font color="#4E9A06">=</font>90
+<font color="#4E9A06">fi</font>
+j<font color="#4E9A06">=$(</font><font color="#729FCF"><b>printf</b></font> <font color="#4E9A06">\\$(</font><font color="#729FCF"><b>printf</b></font> <font color="#FCE94F"><b>&apos;%03o&apos;</b></font> <font color="#EF2929"><b>$j</b></font><font color="#4E9A06">))</font>
+<pre>j<font color="#4E9A06">=$(</font><font color="#729FCF"><b>printf</b></font> <font color="#FCE94F"><b>&apos;%d&apos;</b></font> <font color="#FCE94F"><b>&quot;&apos;$i&quot;</b></font><font color="#4E9A06">)</font>
+j<font color="#4E9A06">=$((</font><font color="#EF2929"><b>$j</b></font>-1<font color="#4E9A06">))</font>
+<font color="#4E9A06">if</font> <font color="#4E9A06">[</font> <font color="#EF2929"><b>$j</b></font> <font color="#4E9A06">-lt</font> 65 <font color="#4E9A06">]</font>
+<font color="#4E9A06">then</font>
+    j<font color="#4E9A06">=</font>90
+<font color="#4E9A06">fi</font>
+j<font color="#4E9A06">=$(</font><font color="#729FCF"><b>printf</b></font> <font color="#4E9A06">\\$(</font><font color="#729FCF"><b>printf</b></font> <font color="#FCE94F"><b>&apos;%03o&apos;</b></font> <font color="#EF2929"><b>$j</b></font><font color="#4E9A06">))</font>
+
+hour<font color="#4E9A06">=`</font><font color="#729FCF"><b>echo</b></font> <font color="#EF2929"><b>$1</b></font> <font color="#4E9A06">|</font> <font color="#729FCF"><b>awk</b></font> -F<font color="#4E9A06">:</font> <font color="#FCE94F"><b>&apos;{print $1}&apos;</b></font><font color="#4E9A06">`</font>
+min<font color="#4E9A06">=`</font><font color="#729FCF"><b>echo</b></font> <font color="#EF2929"><b>$1</b></font> <font color="#4E9A06">|</font> <font color="#729FCF"><b>awk</b></font> <font color="#FCE94F"><b>&apos;{print $1}&apos;</b></font> <font color="#4E9A06">|</font> <font color="#729FCF"><b>awk</b></font> -F<font color="#4E9A06">:</font> <font color="#FCE94F"><b>&apos;{print $2}&apos;</b></font><font color="#4E9A06">`</font>
+day<font color="#4E9A06">=`</font><font color="#729FCF"><b>echo</b></font> <font color="#EF2929"><b>$1</b></font> <font color="#4E9A06">|</font> <font color="#729FCF"><b>awk</b></font> <font color="#FCE94F"><b>&apos;{print $2}&apos;</b></font> <font color="#4E9A06">|</font> <font color="#729FCF"><b>awk</b></font> -F- <font color="#FCE94F"><b>&apos;{print $1}&apos;</b></font><font color="#4E9A06">`</font>
+month<font color="#4E9A06">=`</font><font color="#729FCF"><b>echo</b></font> <font color="#EF2929"><b>$1</b></font> <font color="#4E9A06">|</font> <font color="#729FCF"><b>awk</b></font> <font color="#FCE94F"><b>&apos;{print $2}&apos;</b></font> <font color="#4E9A06">|</font> <font color="#729FCF"><b>awk</b></font> -F- <font color="#FCE94F"><b>&apos;{print $2}&apos;</b></font><font color="#4E9A06">`</font>
+year<font color="#4E9A06">=`</font><font color="#729FCF"><b>echo</b></font> <font color="#EF2929"><b>$1</b></font> <font color="#4E9A06">|</font> <font color="#729FCF"><b>awk</b></font> <font color="#FCE94F"><b>&apos;{print $2}&apos;</b></font> <font color="#4E9A06">|</font> <font color="#729FCF"><b>awk</b></font> -F- <font color="#FCE94F"><b>&apos;{print $3}&apos;</b></font> <font color="#4E9A06">|</font> <font color="#729FCF"><b>awk</b></font> -F. <font color="#FCE94F"><b>&apos;{print $1}&apos;</b></font><font color="#4E9A06">`</font>
+
+<font color="#729FCF"><b>cat</b></font> <font color="#FCE94F"><b>&quot;$1&quot;</b></font> <font color="#4E9A06">|</font> tr <font color="#4E9A06">[</font>a<font color="#4E9A06">-z]</font> <font color="#4E9A06">[</font><font color="#FCE94F"><b>&quot;$x&quot;</b></font>-za-<font color="#FCE94F"><b>&quot;$y&quot;</b></font><font color="#4E9A06">]</font> <font color="#4E9A06">|</font> tr <font color="#4E9A06">[</font>A-Z<font color="#4E9A06">]</font> <font color="#4E9A06">[</font><font color="#FCE94F"><b>&quot;$i&quot;</b></font>-ZA-<font color="#FCE94F"><b>&quot;$j&quot;</b></font><font color="#4E9A06">]</font> <font color="#4E9A06">&gt;</font> <font color="#FCE94F"><b>&quot;$hour:$min $day-$month-$year&quot;</b></font>-decrip.txt</pre></pre>
+
