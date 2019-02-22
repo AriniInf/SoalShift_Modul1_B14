@@ -1,0 +1,8 @@
+14 14 14 2 * bash /home/gipen/Documents/Sisop2k19/File1/nature/jadi/soal1.sh
+
+0 0 * 2 5 bash /home/gipen/Documents/Sisop2k19/File1/nature/jadi/soal1.sh
+
+2-30/6 * * * * bash /home/gipen/Documents/Sisop2k19/File5/soal5.sh
+
+0 * * * * bash /home/Praktikum/praktikum1/soal4a-c.sh
+
