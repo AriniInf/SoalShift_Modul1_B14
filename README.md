@@ -1,5 +1,10 @@
 # SoalShift_Modul1_B14
 
+( Soal Nomor 1 )
+
+Hal pertama yang dilakukan adalah extract file nature.zip dengan command “unzip nature.zip”. Kemudian untuk setiap file .jpg yang ada, dilakukan decrypt dengan command base64 -d. Karena hasil decrypt merupakan suatu bilangan Hexadecimal, maka perlu diubah dengan command “xxd -r” (xxd sendiri merupakan kebalikan dari hexdump yang berfungsi untuk mengubah suatu konten file menjadi hexadecimal, octal, ASCII dan decimal. )
+
+Kemudian juga perlu menambahkan schedule baru pada crontab. Format nya yaitu “14 14 14 2 * bash /home/gipen/Documents/Sisop2k19/File1/nature/soal1.sh”. Hal ini menunjukkan bahwa akan di-bash soal1.sh pada tanggal 14 Februari jam 14.14. Selain itu ditambahkan juga schedule “0 0 * 2 fri bash /home/gipen/Documents/Sisop2k19/File1/nature/soal1.sh”. Ini menunjukkan bahwa selain pada tanggal 14 Februari, soal1.sh juga akan di-bash pada setiap hari Jumat pada bulan Februari.
 
 (Soal Nomor 2) 
 
@@ -41,6 +46,18 @@ poin b.
 <font color="#729FCF"><b>awk</b></font> -F, <font color="#FCE94F"><b>&apos;{if($1 == &quot;United States&quot; &amp;&amp; $7 == &quot;2012&quot; &amp;&amp; $4 == &quot;Outdoor Protection&quot;) a[$6]+=$10} END {for(hasil in a) {print a[hasil],hasil}}&apos;</b></font> WA_Sales_Products_2012-14.csv | sort -nr | awk 'NR <= 3 {print $2,$3,$4}'</pre>
   
   Cari kolom ke-1 “United States” dan kolom ke-7 "2012" dan Product Line "Outdoor Protection", Setiap nilai di dalam kolom Quantity dengan isi kolom Product yang sama akan dijumlahkan, Urutkan dari Quantity terbanya, Pilih 3 record teratas, Cetak hasil record tersebut.
+ 
+ ( Soal Nomor 3 )
+ 
+ Hal yang dilakukan pertama kali yaitu menghitung sekaligus memasukkan isi file password.txt kedalam array (count). Hal ini berguna untuk menentukan file keberapa ketika sebuah password terbuat. Selain itu juga bisa untuk membandingkan setiap password agar tidak ada yang sama.
+
+Untuk generate password sendiri menggunakan command ini : pass=head /dev/urandom | tr -dc A-Za-z0-9 | head -c 12
+
+Urandom digunakan untuk meng-generate sembarang karakter. Namun karena output yang dihasilkan berupa pseudorandom number, maka perlu diterjemahkan (translate) ke karakter. Maka diperlukan command tr. Tr akan menerjemahkannya kedalam huruf atau angka. Karena kita hanya memerlukan 12 karakter, maka ditambahkan head -c 12.
+
+Setelah password baru terbentuk, dilakukan looping untuk melihat apakah ada password yang ada sebelumnya. Jika ada, maka dilakukan generate lagi. Jika tidak, maka password akan dimasukkan ke file password[i].txt dengan I adalah indeks yang ada.
+
+
  
  ( Soal Nomor 4 )
   
@@ -157,3 +174,8 @@ year<font color="#4E9A06">=`</font><font color="#729FCF"><b>echo</b></font> <fon
    4. Mengatur batas atas dari huruf besar A-Z jika string lebih dari batas atas maka akan dikembalikan ke a(jika kecil)/A(jika besar)
    5. Lalu mengambil waktu untuk menyimpan hasil dari program ini
 
+( Soal Nomor 5 )
+
+Input berasal dari isi file /var/log/syslog. Isinya diubah ke dalam bentuk lowercase terlebih dahulu. Jika ada record dengan jumlah field kurang dari 13 ( menggunakan variable NF) , tidak mengandung string “sudo” dan mengandung string “cron” (menggunakan fungsi match), maka record akan diprint ke file log yang berada di direktori /home/gipen/gipen/modul1/syslog.
+
+Schedule baru juga ditambahkan dengan format 2-30/6 * * * * bash /home/gipen/Documents/Sisop2k19/File5/soal5.sh. Hal ini menunjukkan bahwa file soal 5.sh akan di-bash setiap 6 menit dari menit ke 2 sampai 30.
